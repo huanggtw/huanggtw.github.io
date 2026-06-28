@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Accessibility Evaluation & Inclusive Design — Grace Huang</title>
+  <meta name="description" content="A multi-tool accessibility audit of the UM Biological Station website across six pages — combining WAVE, Axe DevTools, VoiceOver, and keyboard testing to identify barriers and recommend remediation." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@200;300;400;500;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/coursework.css" />
+</head>
+<body class="cw-page">
+
+  <!-- ============================================================
+       NAV
+  ============================================================ -->
+  <nav class="nav" aria-label="Main navigation">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">Grace Huang.</a>
+
+      <ul class="nav__links" role="list">
+        <li><a href="index.html" class="nav__link">Home</a></li>
+        <li><a href="projects.html" class="nav__link">Projects</a></li>
+        <li><a href="index.html#contact" class="nav__link">About</a></li>
+      </ul>
+
+      <div class="nav__right">
+        <a href="projects.html" class="nav__back">← All Projects</a>
+        <a href="mailto:huangtwgrace@gmail.com" class="btn btn--ghost-light">Get in touch</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ============================================================
+       HERO
+  ============================================================ -->
+  <section class="cw-hero" data-deco="SI338" aria-labelledby="cw-title">
+    <div class="cw-hero__inner">
+      <div class="cw-hero__inner-content reveal">
+        <span class="cw-hero__tag">Coursework · SI 338</span>
+
+        <h1 class="cw-hero__title" id="cw-title">
+          Accessibility Evaluation<br>&amp; Inclusive Design
+        </h1>
+
+        <p class="cw-hero__meta">
+          University of Michigan · School of Information · SI 338 · Winter 2025
+        </p>
+
+        <div class="cw-hero__methods">
+          <span class="cw-hero__tag-pill">WAVE</span>
+          <span class="cw-hero__tag-pill">Axe DevTools</span>
+          <span class="cw-hero__tag-pill">VoiceOver</span>
+          <span class="cw-hero__tag-pill">Keyboard Testing</span>
+          <span class="cw-hero__tag-pill">Heuristic Analysis</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       OVERVIEW
+  ============================================================ -->
+  <div class="cw-intro reveal">
+    <span class="eyebrow eyebrow--line">Overview</span>
+    <p class="cw-intro__body">This project was a comprehensive accessibility audit of the University of Michigan Biological Station website, conducted as part of SI 338. Working across six pages, I evaluated the site against WCAG 2.1 AA standards using a combination of automated tools, screen reader testing, and keyboard navigation, then produced a full report with prioritized remediation recommendations for each page.</p>
+  </div>
+
+  <!-- ============================================================
+       OUTCOMES BANNER
+  ============================================================ -->
+  <div class="cw-outcomes-banner reveal">
+    <div class="cw-outcomes-banner__stat">
+      <p class="cw-outcomes-banner__label">Issues found</p>
+      <p class="cw-outcomes-banner__number">94</p>
+      <p class="cw-outcomes-banner__desc">Total across six pages — 6 critical, 18 serious</p>
+    </div>
+    <div class="cw-outcomes-banner__stat">
+      <p class="cw-outcomes-banner__label">Pages audited</p>
+      <p class="cw-outcomes-banner__number">6</p>
+      <p class="cw-outcomes-banner__desc">Home, About Us, People, Researchers, Students, Data</p>
+    </div>
+    <!-- <div class="cw-outcomes-banner__stat">
+      <p class="cw-outcomes-banner__label">Largest single issue</p>
+      <p class="cw-outcomes-banner__number">60+</p>
+      <p class="cw-outcomes-banner__desc">Content items outside landmarks on the Students page alone</p>
+    </div> -->
+  </div>
+
+  <!-- ============================================================
+       BODY — facts panel + process steps
+  ============================================================ -->
+  <div class="cw-body-wrap">
+  <div class="cw-body">
+
+    <!-- ---- LEFT: Facts Panel ---- -->
+    <aside class="cw-facts" aria-label="Quick facts">
+      <p class="cw-facts__eyebrow">Quick Facts</p>
+
+      <div class="cw-fact-groups">
+
+        <div class="cw-fact-group reveal">
+          <p class="cw-fact-group__label">Course</p>
+          <p class="cw-fact-group__value">SI 338, Accessible Computing</p>
+        </div>
+
+        <div class="cw-fact-group reveal">
+          <p class="cw-fact-group__label">Subject</p>
+          <p class="cw-fact-group__value">UM Biological Station Website</p>
+        </div>
+
+        <div class="cw-fact-group reveal">
+          <p class="cw-fact-group__label">Scope</p>
+          <p class="cw-fact-group__value">6 pages audited</p>
+        </div>
+
+        <div class="cw-fact-group reveal">
+          <p class="cw-fact-group__label">Tools</p>
+          <p class="cw-fact-group__value cw-fact-group__value--light">WAVE, Axe DevTools, VoiceOver, Keyboard Navigation, Jakob Nielsen's 10 Heuristics</p>
+        </div>
+
+        <div class="cw-fact-group reveal">
+          <p class="cw-fact-group__label">Deliverable</p>
+          <p class="cw-fact-group__value cw-fact-group__value--light">Full accessibility audit report with remediation recommendations per page</p>
+        </div>
+
+      </div>
+    </aside>
+
+    <!-- ---- RIGHT: Process Steps ---- -->
+    <main class="cw-process" aria-label="Audit process">
+
+      <!-- Step 01 -->
+      <div class="cw-step reveal">
+        <div class="cw-step__meta">
+          <div class="cw-step__num">01</div>
+          <span class="cw-step__label">Audit Setup</span>
+        </div>
+        <h2 class="cw-step__title">Defining scope and selecting tools</h2>
+        <p class="cw-step__body">The audit covered six key pages of the UMBS website: Home, About Us, People, Researchers, Students, and Data, Maps &amp; Site History. Testing combined automated tools and manual evaluation simultaneously, ensuring cross-verification and a comprehensive picture of accessibility performance across assistive technologies.</p>
+        <div class="cw-step__tags">
+          <span class="tag">WCAG 2.1 AA</span>
+          <span class="tag">WAVE</span>
+          <span class="tag">Axe DevTools</span>
+        </div>
+      </div>
+
+      <!-- Step 02 -->
+      <div class="cw-step reveal">
+        <div class="cw-step__meta">
+          <div class="cw-step__num">02</div>
+          <span class="cw-step__label">Automated Testing</span>
+        </div>
+        <h2 class="cw-step__title">Running WAVE and Axe DevTools across all six pages</h2>
+        <p class="cw-step__body">WAVE and Axe scans identified a range of structural and visual issues. The most frequent problem was content placed outside semantic landmarks — over 60 instances on the Students page alone — which prevents screen reader users from identifying and navigating between major page regions. Additional issues included contrast failures, missing and redundant alt text, empty links, and invalid heading hierarchies.</p>
+        <div class="cw-note">
+          <p>Axe DevTools identified 94 total issues across all six pages. Six were critical and 18 were serious, with the majority related to missing landmark structure.</p>
+        </div>
+        <div class="cw-step__tags">
+          <span class="tag">WAVE</span>
+          <span class="tag">Axe DevTools</span>
+          <span class="tag">WCAG 2.1 AA</span>
+        </div>
+      </div>
+
+      <!-- Step 03 -->
+      <div class="cw-step reveal">
+        <div class="cw-step__meta">
+          <div class="cw-step__num">03</div>
+          <span class="cw-step__label">Manual Testing</span>
+        </div>
+        <h2 class="cw-step__title">Screen reader and keyboard navigation with VoiceOver</h2>
+        <p class="cw-step__body">Automated tools only tell part of the story. VoiceOver and keyboard-only testing surfaced issues that scans cannot detect, including inconsistent focus visibility on mobile, interactive elements unreachable via keyboard, and accordion states announced only as "plus" or "minus" without indicating whether the section was open or closed. On the People page, keyboard users had to tab through every letter of the alphabet to reach the field of study filter.</p>
+        <div class="cw-step__tags">
+          <span class="tag">VoiceOver</span>
+          <span class="tag">Keyboard Navigation</span>
+        </div>
+      </div>
+
+      <!-- Step 04 -->
+      <div class="cw-step reveal">
+        <div class="cw-step__meta">
+          <div class="cw-step__num">04</div>
+          <span class="cw-step__label">Heuristic Analysis</span>
+        </div>
+        <h2 class="cw-step__title">Evaluating usability against Jakob Nielsen's 10 heuristics</h2>
+        <p class="cw-step__body">Beyond WCAG compliance, the site was evaluated against Nielsen's 10 usability heuristics. Key gaps included inconsistent button styling with no clear visual hierarchy, insufficient system status feedback during form submissions and interactive transitions, no support for user preferences like reduced motion or dark mode, and no confirmation prompts when navigating to external links or downloading files.</p>
+        <div class="cw-step__tags">
+          <span class="tag">Nielsen's 10 Heuristics</span>
+          <span class="tag">Usability Evaluation</span>
+        </div>
+      </div>
+
+      <!-- Step 05 -->
+      <div class="cw-step reveal">
+        <div class="cw-step__meta">
+          <div class="cw-step__num">05</div>
+          <span class="cw-step__label">Remediation Planning</span>
+        </div>
+        <h2 class="cw-step__title">Prioritized recommendations for each page</h2>
+        <p class="cw-step__body">Each of the six pages received a tailored remediation plan. Across all pages, the highest priority fix was implementing proper semantic HTML landmarks, adding header, main, nav, and footer elements to enclose all content regions. This single structural change would address the largest category of issues across the entire site. Additional recommendations covered heading hierarchy, alt text, color contrast, focus visibility, and keyboard access for interactive components like the data dashboard and profile filters.</p>
+        <div class="cw-step__tags">
+          <span class="tag">Remediation Planning</span>
+          <span class="tag">Semantic HTML</span>
+          <span class="tag">WCAG 2.1 AA</span>
+        </div>
+      </div>
+
+    </main>
+
+  </div><!-- /.cw-body -->
+  </div><!-- /.cw-body-wrap -->
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="footer" aria-label="Site footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div>
+          <p class="footer__brand">Grace Huang.</p>
+          <p class="footer__desc">UX researcher and psychology student, curious about the gap between what people say and what they mean.</p>
+        </div>
+        <div>
+          <p class="footer__col-label">Navigation</p>
+          <ul class="footer__nav-links" role="list">
+            <li><a href="index.html" class="footer__nav-link">Home</a></li>
+            <li><a href="projects.html" class="footer__nav-link">Projects</a></li>
+            <li><a href="index.html#contact" class="footer__nav-link">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__col-label">Case Studies</p>
+          <ul class="footer__nav-links" role="list">
+            <li><a href="workplace-control.html" class="footer__nav-link">Employee Compliance</a></li>
+            <li><a href="professional-identity.html" class="footer__nav-link">Professional Identity</a></li>
+            <li><a href="civic-engagement.html" class="footer__nav-link">Civic Engagement</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p class="footer__copy">© 2026 Grace Huang. All rights reserved.</p>
+        <p class="footer__copy">Built with HTML, CSS &amp; JavaScript.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
