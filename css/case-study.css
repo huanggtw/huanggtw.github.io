@@ -831,3 +831,22 @@
   line-height: 1.65;
   padding-left: 0.5rem;
 }
+
+/* ---- Coming soon placeholder ---- */
+.cs-coming-soon {
+  background: var(--surface);
+  border: 0.5px solid var(--rule);
+  border-radius: 4px;
+  padding: 3rem 2rem;
+  text-align: center;
+}
+
+.cs-coming-soon .section__eyebrow {
+  justify-content: center;
+}
+
+.cs-coming-soon__line {
+  font-size: var(--text-sm);
+  color: var(--ink-4);
+  font-weight: 300;
+}
