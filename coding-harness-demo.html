@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Qualitative Coding Evaluation Demo</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --accent: #2563eb;
+      --accent-light: #dbeafe;
+      --text-dark: #1f2937;
+      --text-muted: #6b7280;
+      --border: #e5e7eb;
+      --success: #10b981;
+      --error: #ef4444;
+      --bg-light: #f9fafb;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      color: var(--text-dark);
+      background: white;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 3rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 2rem;
+    }
+
+    h1 {
+      font-size: 1.75rem;
+      margin-bottom: 0.5rem;
+      color: var(--text-dark);
+    }
+
+    .subtitle {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+    }
+
+    .api-key-section {
+      display: flex;
+      gap: 0.5rem;
+      justify-content: center;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .api-key-section input {
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      font-size: 0.9rem;
+      font-family: monospace;
+    }
+
+    .api-key-section button {
+      padding: 0.5rem 1rem;
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: background 0.2s;
+    }
+
+    .api-key-section button:hover {
+      background: #1d4ed8;
+    }
+
+    .api-key-section button:disabled {
+      background: #cbd5e1;
+      cursor: not-allowed;
+    }
+
+    .status {
+      font-size: 0.85rem;
+      margin-top: 0.5rem;
+      color: var(--success);
+    }
+
+    /* Screens */
+    .screen {
+      display: none;
+    }
+
+    .screen.active {
+      display: block;
+    }
+
+    /* Screen 1: Introduction */
+    .intro-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .description {
+      background: var(--bg-light);
+      padding: 1.5rem;
+      border-radius: 6px;
+      margin-bottom: 2rem;
+      font-size: 0.95rem;
+      line-height: 1.8;
+      border-left: 4px solid var(--accent);
+    }
+
+    .codebook-section {
+      margin-bottom: 2rem;
+    }
+
+    .section-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--text-dark);
+    }
+
+    .codebook-toggle {
+      background: white;
+      border: 1px solid var(--border);
+      padding: 0.75rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: background 0.2s;
+    }
+
+    .codebook-toggle:hover {
+      background: var(--bg-light);
+    }
+
+    .codebook-content {
+      display: none;
+      margin-top: 1rem;
+      background: var(--bg-light);
+      padding: 1.5rem;
+      border-radius: 6px;
+      max-height: 400px;
+      overflow-y: auto;
+    }
+
+    .codebook-content.open {
+      display: block;
+    }
+
+    .theme-item {
+      margin-bottom: 1.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .theme-item:last-child {
+      border-bottom: none;
+    }
+
+    .theme-name {
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+
+    .theme-def {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
+      font-style: italic;
+    }
+
+    .subtheme {
+      font-size: 0.85rem;
+      margin: 0.4rem 0;
+      padding-left: 1rem;
+      color: var(--text-dark);
+    }
+
+    .examples-section {
+      margin-bottom: 2rem;
+    }
+
+    .quote-preview {
+      background: var(--bg-light);
+      padding: 1rem;
+      border-radius: 6px;
+      margin-bottom: 1rem;
+      border-left: 4px solid var(--accent-light);
+      font-size: 0.9rem;
+    }
+
+    .quote-text {
+      font-style: italic;
+      color: var(--text-dark);
+      margin-bottom: 0.5rem;
+    }
+
+    .quote-label {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .label-badge {
+      display: inline-block;
+      background: var(--accent-light);
+      color: var(--accent);
+      padding: 0.25rem 0.5rem;
+      border-radius: 3px;
+      font-weight: 500;
+      margin-right: 0.5rem;
+    }
+
+    .button-group {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 4px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      background: #1d4ed8;
+      transform: translateY(-1px);
+    }
+
+    .btn-primary:disabled {
+      background: #cbd5e1;
+      cursor: not-allowed;
+    }
+
+    .btn-secondary {
+      background: white;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+    }
+
+    .btn-secondary:hover {
+      background: var(--accent-light);
+    }
+
+    /* Screen 2: Live Coding */
+    .progress-bar {
+      width: 100%;
+      height: 6px;
+      background: var(--border);
+      border-radius: 3px;
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: var(--accent);
+      transition: width 0.3s ease;
+    }
+
+    .quote-container {
+      background: var(--bg-light);
+      padding: 1.5rem;
+      border-radius: 6px;
+      margin-bottom: 2rem;
+      border: 1px solid var(--border);
+    }
+
+    .quote-container.processing {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-light);
+    }
+
+    .quote-header {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+
+    .quote-main {
+      font-size: 0.95rem;
+      font-style: italic;
+      color: var(--text-dark);
+      margin-bottom: 1.5rem;
+      line-height: 1.7;
+    }
+
+    .prediction-section {
+      margin-bottom: 1.5rem;
+    }
+
+    .prediction-label {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.5rem;
+    }
+
+    .prediction-loading {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .spinner {
+      width: 16px;
+      height: 16px;
+      border: 2px solid var(--accent-light);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 0.6s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .prediction-result {
+      background: white;
+      border: 1px solid var(--border);
+      padding: 1rem;
+      border-radius: 4px;
+    }
+
+    .pred-row {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 1rem;
+      margin-bottom: 0.75rem;
+      font-size: 0.9rem;
+    }
+
+    .pred-row:last-child {
+      margin-bottom: 0;
+    }
+
+    .pred-label {
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+
+    .pred-value {
+      color: var(--text-dark);
+    }
+
+    .accuracy-check {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1rem;
+      border-radius: 4px;
+      font-weight: 500;
+      margin-top: 1rem;
+    }
+
+    .accuracy-check.match {
+      background: #ecfdf5;
+      color: var(--success);
+    }
+
+    .accuracy-check.miss {
+      background: #fef2f2;
+      color: var(--error);
+    }
+
+    .check-icon {
+      font-size: 1.2rem;
+    }
+
+    /* Screen 3: Results */
+    .results-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    @media (max-width: 600px) {
+      .results-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .stat-card {
+      background: var(--bg-light);
+      padding: 1.5rem;
+      border-radius: 6px;
+      text-align: center;
+      border: 1px solid var(--border);
+    }
+
+    .stat-value {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .breakdown-section {
+      margin-bottom: 2rem;
+    }
+
+    .breakdown-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      font-size: 0.9rem;
+    }
+
+    .breakdown-table thead {
+      background: var(--bg-light);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .breakdown-table th {
+      padding: 1rem;
+      text-align: left;
+      font-weight: 600;
+      color: var(--text-dark);
+    }
+
+    .breakdown-table td {
+      padding: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .breakdown-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .miss-section {
+      margin-bottom: 2rem;
+    }
+
+    .miss-card {
+      background: white;
+      border: 1px solid var(--border);
+      padding: 1.5rem;
+      border-radius: 6px;
+      margin-bottom: 1.5rem;
+    }
+
+    .miss-quote {
+      font-style: italic;
+      color: var(--text-dark);
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    .miss-comparison {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 600px) {
+      .miss-comparison {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .miss-col {
+      background: var(--bg-light);
+      padding: 1rem;
+      border-radius: 4px;
+    }
+
+    .miss-col-label {
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      letter-spacing: 0.5px;
+    }
+
+    .miss-col-content {
+      color: var(--text-dark);
+    }
+
+    .miss-col-content strong {
+      color: var(--text-dark);
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+
+    .miss-explanation {
+      background: #fef9f3;
+      border-left: 4px solid #f59e0b;
+      padding: 0.75rem;
+      border-radius: 3px;
+      font-size: 0.85rem;
+      color: #92400e;
+    }
+
+    .key-finding {
+      background: #f0f9ff;
+      border-left: 4px solid var(--accent);
+      padding: 1.5rem;
+      border-radius: 6px;
+      line-height: 1.8;
+      font-size: 0.95rem;
+      margin-bottom: 2rem;
+    }
+
+    .key-finding-title {
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      letter-spacing: 0.5px;
+    }
+
+    .links-section {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .links-section a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--accent);
+      border-radius: 4px;
+      transition: all 0.2s;
+    }
+
+    .links-section a:hover {
+      background: var(--accent-light);
+    }
+
+    .loading-message {
+      text-align: center;
+      padding: 2rem;
+      color: var(--text-muted);
+    }
+
+    .error-message {
+      background: #fef2f2;
+      color: var(--error);
+      padding: 1rem;
+      border-radius: 4px;
+      margin-bottom: 1rem;
+      border: 1px solid #fecaca;
+    }
+
+    .note {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 1rem;
+      padding: 0.75rem;
+      background: var(--bg-light);
+      border-radius: 4px;
+      border-left: 3px solid var(--accent-light);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Qualitative Coding Evaluation Demo</h1>
+      <p class="subtitle">Testing Claude's ability to replicate expert thematic coding</p>
+      <div class="api-key-section">
+        <input type="password" id="apiKeyInput" placeholder="Enter your Anthropic API key">
+        <button onclick="setApiKey()">Save Key</button>
+        <span id="keyStatus" class="status"></span>
+      </div>
+    </header>
+
+    <!-- Screen 1: Introduction -->
+    <div class="screen active" id="screenIntro">
+      <div class="intro-content">
+        <div class="description">
+          I spent months hand-coding interview transcripts to understand how Chinese tech employees experience 996 culture.
+          This demo tests whether Claude can replicate my expert coding, cold, on unseen quotes. It's not a replacement for
+          qualitative research—it's a rigor check: where exactly does AI assistance become unreliable, and how would you know?
+        </div>
+
+        <div class="codebook-section">
+          <button class="codebook-toggle" onclick="toggleCodebook()">
+            <span id="toggleArrow">▼</span>
+            Show Codebook (7 themes, ~37 subthemes)
+          </button>
+          <div id="codebookContent" class="codebook-content">
+            <!-- Will be populated by JS -->
+          </div>
+        </div>
+
+        <div class="examples-section">
+          <h2 class="section-title">Example Quotes from Evaluation Set</h2>
+          <div id="exampleQuotes">
+            <!-- Will be populated by JS -->
+          </div>
+          <div class="note">Demo uses a curated sample of 6 quotes from a 105-quote evaluation.</div>
+        </div>
+
+        <div class="button-group">
+          <button class="btn btn-primary" onclick="startEvaluation()">Run Evaluation</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Screen 2: Live Coding -->
+    <div class="screen" id="screenLive">
+      <h2 class="section-title">Processing Quotes...</h2>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+      <div id="quotesCoding">
+        <!-- Will be populated by JS -->
+      </div>
+      <div id="errorMessage" class="error-message" style="display: none;"></div>
+    </div>
+
+    <!-- Screen 3: Results -->
+    <div class="screen" id="screenResults">
+      <h2 class="section-title">Evaluation Results</h2>
+
+      <div class="results-grid">
+        <div class="stat-card">
+          <div class="stat-value" id="themeAccuracy">—</div>
+          <div class="stat-label">Theme Accuracy</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="subthemeAccuracy">—</div>
+          <div class="stat-label">Subtheme Accuracy</div>
+        </div>
+      </div>
+
+      <div class="breakdown-section">
+        <h3 class="section-title">By-Theme Breakdown</h3>
+        <table class="breakdown-table">
+          <thead>
+            <tr>
+              <th>Theme</th>
+              <th>Theme Accuracy</th>
+              <th>Subtheme Accuracy</th>
+            </tr>
+          </thead>
+          <tbody id="breakdownTable">
+            <!-- Will be populated by JS -->
+          </tbody>
+        </table>
+      </div>
+
+      <div class="miss-section">
+        <h3 class="section-title">Highlighted Misses</h3>
+        <div id="misses">
+          <!-- Will be populated by JS -->
+        </div>
+      </div>
+
+      <div class="key-finding">
+        <div class="key-finding-title">Key Finding</div>
+        <p>Claude achieves ~64% theme-level accuracy cold, dropping to ~48% at the subtheme level. Few-shot examples (+1 example per subtheme) improve accuracy by ~3-4 points — a real but modest lift. The systematic failure on Institutional Logic (0% accuracy) reveals a core limitation: Claude codes by surface topic, while expert qualitative coding requires reading the structural or psychological pattern a quote instantiates — a distinction that depends on context no single quote can supply.</p>
+      </div>
+
+      <div class="links-section">
+        <a href="https://github.com/huanggtw/coding-harness" target="_blank">GitHub Repository</a>
+        <a href="https://huanggtw.github.io" target="_blank">Back to Portfolio</a>
+      </div>
+
+      <div class="button-group">
+        <button class="btn btn-secondary" onclick="resetEvaluation()">Run Again</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let apiKey = null;
+    let codebookData = null;
+    let evaluationResults = [];
+
+    const quotes = [
+      {
+        text: "It feels like I can't do much about it, really. Either I leave this environment, or as soon as I find a new job opportunity, I'll leave immediately.",
+        humanTheme: "Self Control",
+        humanSubtheme: "Hopelessness and low self-efficacy"
+      },
+      {
+        text: "Generally, I vent to my colleagues. With the ones I get along well with, we chat and complain about various things every day.",
+        humanTheme: "Peer Control",
+        humanSubtheme: "Enabling - Positive relationship with coworkers"
+      },
+      {
+        text: "But in other aspects, for example... it's like sacrificing personal life for work, but I think this doesn't align with values. For me, it doesn't align with my values.",
+        humanTheme: "Self Control",
+        humanSubtheme: "Cognitive dissance"
+      },
+      {
+        text: "Many people think this is a sunrise industry, but personally, I see it as a sunset industry. While many are eager to get in, I'm eager to get out.",
+        humanTheme: "Institutional Logic",
+        humanSubtheme: "Pessimistic and unstable overall environment"
+      },
+      {
+        text: "Actually, many employees can't stand it and have already left, maybe even at the beginning of the year. I might leave too because everyone is...",
+        humanTheme: "Peer Control",
+        humanSubtheme: "Peer influence"
+      },
+      {
+        text: "After I get home... Because I'm an algorithm engineer, I usually run two models after I get home and I usually go to bed until about 1:30 a.m.",
+        humanTheme: "Outcomes",
+        humanSubtheme: "Erosion of work-life balance"
+      }
+    ];
+
+    const codebook = {
+      "Self Control": {
+        "definition": "Regulation of one's emotions and willingness to sacrifice personal needs to meet work demands.",
+        "subthemes": {
+          "Monetary motives": "Financial gains as the most common primary motivation for entering or staying in the field.",
+          "Hopelessness and low self-efficacy": "Sense of hopelessness or learned helplessness regarding one's ability to alter current workplace conditions.",
+          "Tolerance depends on current circumstances": "Rationalizing harsh conditions as tolerable specifically because of one's current personal circumstances (e.g. being young, single, no dependents).",
+          "Internalizing emotions and expectations": "Internalizing externally imposed expectations and applying similar standards to oneself, often blurring the line between voluntary and coerced effort.",
+          "Cognitive dissance": "Holding two contradictory beliefs or statements about one's own behavior or motivation without resolving the contradiction (e.g. claiming something is voluntary while describing it as unavoidable).",
+          "Job satisfaction and passion": "Genuine enjoyment, passion, or intrinsic satisfaction derived from the work itself.",
+          "Others": "Self-control related content that does not fit cleanly into the above subthemes."
+        }
+      },
+      "Peer Control": {
+        "definition": "Employees observing and responding to colleagues' behavior to influence performance and assess standing.",
+        "subthemes": {
+          "Peer influence": "Employees adopt the attitudes and behaviors of colleagues through passive observation and implicit expectations (e.g. staying late because others do).",
+          "Peer monitoring": "Employees actively observing and responding to the behaviors of peers, often involving competition or withholding help/information.",
+          "Enabling - Collaborative work environment": "Descriptions of a generally collaborative, mutually supportive team or work environment.",
+          "Enabling - Positive relationship with coworkers": "Positive, supportive interpersonal relationships with coworkers, including venting or emotional support.",
+          "Enabling - Egalitarian relationship with leaders": "Flat, non-hierarchical, or mutually respectful relationships between employees and leaders/managers."
+        }
+      },
+      "Management Control": {
+        "definition": "Authority-driven practices used by supervisors/managers to shape behavior, monitor performance, and achieve organizational goals.",
+        "subthemes": {
+          "Toxic leadership dynamics and delicate interpersonal relationships": "Hierarchical, manipulative, or neglectful leadership dynamics; strained or fragile relationships with supervisors.",
+          "Ineffective (upwards) communication": "Limited ability of employees to communicate concerns, feedback, or pushback to management, or feedback that yields little result.",
+          "Unreasonable workload and inefficiency": "Assignment of excessive, unreasonable workload or inefficient/redundant meetings and tasks.",
+          "Enabling - Egalitarian relationship with leaders": "Flat, non-hierarchical, or mutually respectful relationships between employees and leaders/managers.",
+          "Enabling - Supportive leadership encouraging personal development": "Leadership that actively supports employees' growth, learning, or personal development."
+        }
+      },
+      "Organizational Control": {
+        "definition": "Organization-level practices that align employee behaviors with organizational goals and benefits.",
+        "subthemes": {
+          "Performance evaluation": "Formal evaluation/ranking systems (e.g. forced ranking, 2-7-1 or 3-6-1 systems) used to assess and incentivize employees.",
+          "Definitions of model employees": "Organizational or cultural definition of what an ideal ('model') employee looks like, often tied to long hours or total availability.",
+          "Disconnect between stated policies and actual practices": "Disparity between how official company policies are written/intended versus how they are actually implemented or experienced.",
+          "Normalization of overtime and long working hours": "Organizational norms that treat overtime and long hours as routine or expected rather than exceptional.",
+          "Sociocultural expectations to \"involute\"": "Pressure to engage in 'involution' (neijuan) -- escalating internal competition without proportional reward.",
+          "Pessimistic and unstable overall environment": "A generally pessimistic, precarious, or unstable organizational/economic environment.",
+          "Cultural control": "Organizational culture (events, values, messaging) used as a mechanism of behavioral control.",
+          "Enabling factors": "Organizational practices or conditions that support employee wellbeing or push back against overwork culture.",
+          "Others": "Organizational control content that does not fit cleanly into the above subthemes."
+        }
+      },
+      "Industrial Logic": {
+        "definition": "Shared assumptions, values, and practices within the tech industry that guide behavior and define what is considered acceptable.",
+        "subthemes": {
+          "Lifelong learning in a rapidly evolving environment": "Expectation to continuously learn and keep up with fast-evolving technology, often conflicting with personal time.",
+          "Age barrier and discrimination": "Perception that age (particularly around 35) is a critical turning point or liability in one's career trajectory ('35-year-old curse').",
+          "High pressure and uncertainty": "General sense of high pressure, volatility, or uncertainty attributed to the nature of the industry.",
+          "Competitive work culture": "Industry-wide culture of intense competition among employees or companies.",
+          "Perceived commitment to long-term employment": "Beliefs about job security or expected tenure within the industry.",
+          "Anxiety stemming from not learning due to industrial expectations": "Anxiety specifically tied to falling behind on learning/skills given industry expectations."
+        }
+      },
+      "Institutional Logic": {
+        "definition": "Society-wide norms, values, and beliefs that shape what is considered acceptable behavior, beyond the immediate organization or industry.",
+        "subthemes": {
+          "Normalization of overtime and long working hours": "Societal-level normalization of long hours/overtime such that it is not perceived as unusual or excessive (e.g. 9-9-6 / 996).",
+          "Sociocultural expectations to \"involute\"": "Broader societal pressure toward 'involution' -- escalating effort/competition without proportional reward.",
+          "Pessimistic and unstable overall environment": "Society-wide sense of a pessimistic or unstable economic/social environment.",
+          "Chinese habit of taking naps after lunch (ambiuous boundary)": "Cultural practice of taking a midday nap, discussed as an ambiguous boundary between personal rest and work norms."
+        }
+      },
+      "Outcomes": {
+        "definition": "Personal and psychological impacts of the workplace culture and control mechanisms described above.",
+        "subthemes": {
+          "Chronic burnout and exhaustion": "Persistent physical and emotional exhaustion attributed to work demands.",
+          "Deterioration of mental and physical wellbeing": "Physical health decline (e.g. weight gain, insomnia) or mental health decline linked to work conditions.",
+          "Retaliatory entertainment": "Pattern of late-night leisure/screen use undertaken in response to work-related fatigue, at the cost of sleep.",
+          "Erosion of work-life balance": "Loss of personal time, relationships, or non-work life due to work demands.",
+          "Internalization of overwork and personality shift": "Internalizing overwork as normal to the point of experiencing a shift in one's personality or self-concept."
+        }
+      }
+    };
+
+    function setApiKey() {
+      const key = document.getElementById('apiKeyInput').value.trim();
+      if (!key) {
+        document.getElementById('keyStatus').textContent = '❌ Key required';
+        return;
+      }
+      apiKey = key;
+      document.getElementById('keyStatus').textContent = '✓ Key saved';
+      document.getElementById('apiKeyInput').value = '';
+    }
+
+    function toggleCodebook() {
+      const content = document.getElementById('codebookContent');
+      const arrow = document.getElementById('toggleArrow');
+      content.classList.toggle('open');
+      arrow.textContent = content.classList.contains('open') ? '▲' : '▼';
+    }
+
+    function populateCodebook() {
+      const html = Object.entries(codebook).map(([theme, data]) => `
+        <div class="theme-item">
+          <div class="theme-name">${theme}</div>
+          <div class="theme-def">${data.definition}</div>
+          ${Object.entries(data.subthemes).map(([subtheme, def]) =>
+            `<div class="subtheme"><strong>${subtheme}:</strong> ${def}</div>`
+          ).join('')}
+        </div>
+      `).join('');
+      document.getElementById('codebookContent').innerHTML = html;
+    }
+
+    function populateExamples() {
+      const html = quotes.map(q => `
+        <div class="quote-preview">
+          <div class="quote-text">"${q.text}"</div>
+          <div class="quote-label">
+            <span class="label-badge">${q.humanTheme}</span>
+            <span class="label-badge">${q.humanSubtheme}</span>
+          </div>
+        </div>
+      `).join('');
+      document.getElementById('exampleQuotes').innerHTML = html;
+    }
+
+    function startEvaluation() {
+      if (!apiKey) {
+        alert('Please enter your Anthropic API key first');
+        return;
+      }
+      evaluationResults = [];
+      showScreen('screenLive');
+      runEvaluation();
+    }
+
+    async function runEvaluation() {
+      const container = document.getElementById('quotesCoding');
+      const errorEl = document.getElementById('errorMessage');
+      container.innerHTML = '';
+      errorEl.style.display = 'none';
+      evaluationResults = [];
+
+      for (let i = 0; i < quotes.length; i++) {
+        const quote = quotes[i];
+        const quoteEl = document.createElement('div');
+        quoteEl.className = 'quote-container processing';
+        quoteEl.innerHTML = `
+          <div class="quote-header">Quote ${i + 1} of ${quotes.length}</div>
+          <div class="quote-main">"${quote.text}"</div>
+          <div class="prediction-section">
+            <div class="prediction-label">Claude's Prediction</div>
+            <div class="prediction-loading">
+              <div class="spinner"></div>
+              <span>Analyzing...</span>
+            </div>
+          </div>
+        `;
+        container.appendChild(quoteEl);
+        updateProgress((i + 1) / quotes.length);
+
+        try {
+          const prediction = await askClaude(quote.text);
+
+          const themeMatch = prediction.theme === quote.humanTheme;
+          const subthemeMatch = prediction.subtheme === quote.humanSubtheme;
+
+          evaluationResults.push({
+            quote: quote.text,
+            humanTheme: quote.humanTheme,
+            humanSubtheme: quote.humanSubtheme,
+            predictedTheme: prediction.theme,
+            predictedSubtheme: prediction.subtheme,
+            rationale: prediction.rationale,
+            themeMatch,
+            subthemeMatch
+          });
+
+          const predHtml = `
+            <div class="prediction-result">
+              <div class="pred-row">
+                <div class="pred-label">Theme</div>
+                <div class="pred-value">${prediction.theme}</div>
+              </div>
+              <div class="pred-row">
+                <div class="pred-label">Subtheme</div>
+                <div class="pred-value">${prediction.subtheme}</div>
+              </div>
+              <div class="pred-row">
+                <div class="pred-label">Rationale</div>
+                <div class="pred-value">${prediction.rationale}</div>
+              </div>
+            </div>
+            <div class="accuracy-check ${themeMatch && subthemeMatch ? 'match' : 'miss'}">
+              <span class="check-icon">${themeMatch && subthemeMatch ? '✓' : '✗'}</span>
+              <span>${themeMatch && subthemeMatch ? 'Correct' : 'Human: ' + quote.humanTheme + ' / ' + quote.humanSubtheme}</span>
+            </div>
+          `;
+
+          quoteEl.querySelector('.prediction-section').innerHTML = `
+            <div class="prediction-label">Claude's Prediction</div>
+            ${predHtml}
+          `;
+          quoteEl.classList.remove('processing');
+        } catch (error) {
+          const errorMsg = error.message || 'Unknown error';
+          console.error(`Quote ${i + 1} error details:`, error);
+
+          let userMessage = errorMsg;
+          if (errorMsg.includes('API error (401)')) {
+            userMessage = 'Invalid API key. Please check your Anthropic API key.';
+          } else if (errorMsg.includes('API error (429)')) {
+            userMessage = 'Rate limited. Please wait a moment and try again.';
+          } else if (errorMsg.includes('Failed to fetch')) {
+            userMessage = 'Network error. Check your connection and API key settings.';
+          }
+
+          errorEl.innerHTML = `⚠️ Error on quote ${i + 1}: ${userMessage}<br><small style="color: var(--text-muted);">Check browser console for details.</small>`;
+          errorEl.style.display = 'block';
+          quoteEl.querySelector('.prediction-section').innerHTML = `
+            <div class="error-message">❌ Failed to get prediction</div>
+          `;
+          quoteEl.classList.remove('processing');
+        }
+
+        await new Promise(resolve => setTimeout(resolve, 500));
+      }
+
+      if (evaluationResults.length > 0) {
+        showResults();
+      } else {
+        errorEl.textContent = 'No results to display. Please check your API key and try again.';
+        errorEl.style.display = 'block';
+      }
+    }
+
+    async function askClaude(quote) {
+      const systemPrompt = `You are a qualitative coding expert. Given the following codebook and a quote, determine which theme and subtheme best describe the quote.
+
+CODEBOOK:
+${JSON.stringify(codebook, null, 2)}
+
+Return ONLY valid JSON with no other text, in this exact format:
+{
+  "theme": "Theme name",
+  "subtheme": "Subtheme name",
+  "rationale": "One-sentence explanation"
+}
+
+Ensure theme and subtheme are exactly as they appear in the codebook.`;
+
+      try {
+        const response = await fetch('https://api.anthropic.com/v1/messages', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'x-api-key': apiKey,
+            'anthropic-version': '2023-06-01',
+            'anthropic-dangerous-direct-browser-access': 'true'
+          },
+          body: JSON.stringify({
+            model: 'claude-sonnet-4-6',
+            max_tokens: 200,
+            system: systemPrompt,
+            messages: [
+              {
+                role: 'user',
+                content: `Quote to code: "${quote}"`
+              }
+            ]
+          })
+        });
+
+        if (!response.ok) {
+          const errorData = await response.text();
+          console.error('API Error - Status:', response.status, 'Response:', errorData);
+          throw new Error(`API error (${response.status}): ${response.statusText}`);
+        }
+
+        const data = await response.json();
+        const text = data.content[0].text;
+        return JSON.parse(text);
+      } catch (error) {
+        console.error('Failed to get prediction from Claude:', error);
+        throw error;
+      }
+    }
+
+    function updateProgress(fraction) {
+      document.getElementById('progressFill').style.width = (fraction * 100) + '%';
+    }
+
+    function showResults() {
+      if (!evaluationResults || evaluationResults.length === 0) {
+        document.getElementById('errorMessage').textContent = 'No evaluation data available.';
+        document.getElementById('errorMessage').style.display = 'block';
+        return;
+      }
+
+      showScreen('screenResults');
+
+      const themeCorrect = evaluationResults.filter(r => r.themeMatch).length;
+      const subthemeCorrect = evaluationResults.filter(r => r.subthemeMatch).length;
+      const totalQuotes = evaluationResults.length;
+
+      const themeAcc = totalQuotes > 0 ? ((themeCorrect / totalQuotes) * 100).toFixed(1) : 0;
+      const subthemeAcc = totalQuotes > 0 ? ((subthemeCorrect / totalQuotes) * 100).toFixed(1) : 0;
+
+      document.getElementById('themeAccuracy').textContent = themeAcc + '%';
+      document.getElementById('subthemeAccuracy').textContent = subthemeAcc + '%';
+
+      const byTheme = {};
+      quotes.forEach((q, i) => {
+        if (!byTheme[q.humanTheme]) {
+          byTheme[q.humanTheme] = { total: 0, themeCorrect: 0, subthemeCorrect: 0 };
+        }
+        const result = evaluationResults[i];
+        byTheme[q.humanTheme].total++;
+        if (result.themeMatch) byTheme[q.humanTheme].themeCorrect++;
+        if (result.subthemeMatch) byTheme[q.humanTheme].subthemeCorrect++;
+      });
+
+      const tableHtml = Object.entries(byTheme).map(([theme, stats]) => `
+        <tr>
+          <td>${theme}</td>
+          <td>${((stats.themeCorrect / stats.total) * 100).toFixed(0)}% (${stats.themeCorrect}/${stats.total})</td>
+          <td>${((stats.subthemeCorrect / stats.total) * 100).toFixed(0)}% (${stats.subthemeCorrect}/${stats.total})</td>
+        </tr>
+      `).join('');
+      document.getElementById('breakdownTable').innerHTML = tableHtml;
+
+      const misses = evaluationResults.filter(r => !r.themeMatch || !r.subthemeMatch).slice(0, 2);
+      if (misses.length > 0) {
+        const missesHtml = misses.map(m => `
+          <div class="miss-card">
+            <div class="miss-quote">"${m.quote}"</div>
+            <div class="miss-comparison">
+              <div class="miss-col">
+                <div class="miss-col-label">Your Label</div>
+                <div class="miss-col-content">
+                  <strong>${m.humanTheme}</strong>
+                  ${m.humanSubtheme}
+                </div>
+              </div>
+              <div class="miss-col">
+                <div class="miss-col-label">Claude's Prediction</div>
+                <div class="miss-col-content">
+                  <strong>${m.predictedTheme}</strong>
+                  ${m.predictedSubtheme}
+                </div>
+              </div>
+            </div>
+            <div class="miss-explanation">
+              <strong>Rationale:</strong> ${m.rationale}
+            </div>
+          </div>
+        `).join('');
+        document.getElementById('misses').innerHTML = missesHtml;
+      } else {
+        document.getElementById('misses').innerHTML = '<p style="color: var(--text-muted); font-style: italic;">All quotes were coded correctly!</p>';
+      }
+    }
+
+    function resetEvaluation() {
+      evaluationResults = [];
+      showScreen('screenIntro');
+      document.getElementById('progressFill').style.width = '0%';
+    }
+
+    function showScreen(screenId) {
+      document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+      document.getElementById(screenId).classList.add('active');
+    }
+
+    // Initialize
+    populateCodebook();
+    populateExamples();
+  </script>
+</body>
+</html>
