@@ -151,7 +151,7 @@
 }
 
 .work__heading {
-  font-size: clamp(var(--text-2xl), 3.5vw, var(--text-4xl));
+  font-size: clamp(var(--text-2xl), 3.2vw, var(--text-4xl));
   font-weight: 700;
   color: var(--ink);
   line-height: 1.15;
