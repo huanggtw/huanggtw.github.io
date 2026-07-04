@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Structured Rubrics & Hiring Bias — Grace Huang</title>
+  <meta name="description" content="An experimental study testing whether a structured hiring rubric reduces bias in hiring decisions, using fictional job candidates evaluated with and without a rubric." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@200;300;400;500;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/coursework.css" />
+</head>
+<body class="cw-page">
+
+  <!-- ============================================================
+       NAV
+  ============================================================ -->
+  <nav class="nav" aria-label="Main navigation">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">Grace Huang.</a>
+
+      <ul class="nav__links" role="list">
+        <li><a href="index.html" class="nav__link">Home</a></li>
+        <li><a href="projects.html" class="nav__link">Projects</a></li>
+        <li><a href="index.html#contact" class="nav__link">About</a></li>
+      </ul>
+
+      <div class="nav__right">
+        <a href="projects.html" class="nav__back">← All Projects</a>
+        <a href="mailto:huangtwgrace@gmail.com" class="btn btn--ghost-light">Get in touch</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ============================================================
+       HERO
+  ============================================================ -->
+  <section class="cw-hero" data-deco="PSYCH303" aria-labelledby="cw-title">
+    <div class="cw-hero__inner">
+      <div class="cw-hero__inner-content reveal">
+        <span class="cw-hero__tag">Coursework · PSYCH 303</span>
+
+        <h1 class="cw-hero__title" id="cw-title">
+          Structured Rubrics<br>&amp; Hiring Bias
+        </h1>
+
+        <p class="cw-hero__meta">
+          University of Michigan · Department of Psychology · PSYCH 303 · Fall 2024
+        </p>
+
+        <div class="cw-hero__methods">
+          <span class="cw-hero__tag-pill">Experimental Design</span>
+          <span class="cw-hero__tag-pill">Qualtrics</span>
+          <span class="cw-hero__tag-pill">Amazon MTurk</span>
+          <span class="cw-hero__tag-pill">Independent t-Tests</span>
+          <span class="cw-hero__tag-pill">Between-Subjects</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       OVERVIEW
+  ============================================================ -->
+  <div class="cw-intro reveal">
+    <span class="eyebrow eyebrow--line">Overview</span>
+    <p class="cw-intro__body">Hiring rubrics are supposed to make hiring fairer, but almost nobody tests whether they actually work. For my final project in PSYCH 303, I ran an experiment to find out. Participants stepped into the role of a hiring committee member reviewing three fictional candidates for a marketing job, some with a structured rubric in hand and some without. I expected the rubric to sand down bias and bring people's decisions closer together. Instead, it changed almost nothing, and figuring out why turned out to be the more interesting project.</p>
+  </div>
+
+  <!-- ============================================================
+       OUTCOMES BANNER
+  ============================================================ -->
+  <div class="cw-outcomes-banner reveal">
+    <div class="cw-outcomes-banner__stat">
+      <p class="cw-outcomes-banner__label">Participants</p>
+      <p class="cw-outcomes-banner__number">29</p>
+      <p class="cw-outcomes-banner__desc">Randomly split between the rubric and no-rubric groups</p>
+    </div>
+    <div class="cw-outcomes-banner__stat">
+      <p class="cw-outcomes-banner__label">Candidates evaluated</p>
+      <p class="cw-outcomes-banner__number">3</p>
+      <p class="cw-outcomes-banner__desc">The same fictional applicants seen by everyone</p>
+    </div>
+    <div class="cw-outcomes-banner__stat">
+      <p class="cw-outcomes-banner__label">Difference the rubric made</p>
+      <p class="cw-outcomes-banner__number">None</p>
+      <p class="cw-outcomes-banner__desc">No measurable shift in ratings, decisions, or confidence</p>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       BODY — facts panel + process steps
+  ============================================================ -->
+  <div class="cw-body-wrap">
+  <div class="cw-body">
+
+    <!-- ---- LEFT: Facts Panel ---- -->
+    <aside class="cw-facts" aria-label="Quick facts">
+      <p class="cw-facts__eyebrow">Quick Facts</p>
+
+      <div class="cw-fact-groups">
+
+        <div class="cw-fact-group reveal">
+          <p class="cw-fact-group__label">Course</p>
+          <p class="cw-fact-group__value">PSYCH 303, Research Methods in Psychology</p>
+        </div>
+
+        <div class="cw-fact-group reveal">
+          <p class="cw-fact-group__label">Instructor</p>
+          <p class="cw-fact-group__value">Dr. Joshua Rabinowitz</p>
+        </div>
+
+        <div class="cw-fact-group reveal">
+          <p class="cw-fact-group__label">Design</p>
+          <p class="cw-fact-group__value">Between-subjects experiment, rubric vs. no rubric</p>
+        </div>
+
+        <div class="cw-fact-group reveal">
+          <p class="cw-fact-group__label">Tools</p>
+          <p class="cw-fact-group__value cw-fact-group__value--light">Qualtrics, Amazon MTurk, independent samples t-tests</p>
+        </div>
+
+        <div class="cw-fact-group reveal">
+          <p class="cw-fact-group__label">Deliverable</p>
+          <p class="cw-fact-group__value cw-fact-group__value--light">Full research report with literature review, method, results, and discussion</p>
+        </div>
+
+      </div>
+    </aside>
+
+    <!-- ---- RIGHT: Process Steps ---- -->
+    <main class="cw-process" aria-label="Study process">
+
+      <!-- Step 01 -->
+      <div class="cw-step reveal">
+        <div class="cw-step__meta">
+          <div class="cw-step__num">01</div>
+          <span class="cw-step__label">Research Question</span>
+        </div>
+        <h2 class="cw-step__title">Everyone agrees bias exists. Fewer people test the fixes</h2>
+        <p class="cw-step__body">It's well established that hiring bias is real. Studies have shown that identical resumes get noticeably fewer callbacks when the applicant has a distinctively Black name instead of a white one. What's talked about far less is whether the tools companies actually use, like structured rubrics, do anything to change that. I wanted to test one of the most common suggested fixes directly instead of taking it on faith, so I built a rubric and put it up against no rubric at all.</p>
+        <div class="cw-step__tags">
+          <span class="tag">Literature Review</span>
+          <span class="tag">Hiring Bias</span>
+        </div>
+      </div>
+
+      <!-- Step 02 -->
+      <div class="cw-step reveal">
+        <div class="cw-step__meta">
+          <div class="cw-step__num">02</div>
+          <span class="cw-step__label">Study Design</span>
+        </div>
+        <h2 class="cw-step__title">Putting people in the hiring seat</h2>
+        <p class="cw-step__body">I told participants they were joining a hiring committee for BrightWave Marketing, a fictional agency looking to fill a Digital Marketing Specialist role, and had everyone review the same three candidates. Half the group got a rubric covering qualifications, experience, and skill diversity to reference the whole time. The other half just went with their gut. That was the only thing I let differ between the two groups, so any gap in how they judged candidates could be traced back to the rubric itself.</p>
+        <div class="cw-step__tags">
+          <span class="tag">Experimental Design</span>
+          <span class="tag">Random Assignment</span>
+        </div>
+      </div>
+
+      <!-- Step 03 -->
+      <div class="cw-step reveal">
+        <div class="cw-step__meta">
+          <div class="cw-step__num">03</div>
+          <span class="cw-step__label">Procedure</span>
+        </div>
+        <h2 class="cw-step__title">Walking through the decision, not just the survey</h2>
+        <p class="cw-step__body">Participants reviewed each candidate one at a time, rated them, made a hiring call, and wrote a short justification for it, the same way they might explain a decision to a colleague. Once all three were reviewed, I asked how fair and how easy the process had felt, and the rubric group also told me how much the rubric actually helped. Afterward, everyone learned the candidates weren't real and what the study was really testing.</p>
+        <div class="cw-step__tags">
+          <span class="tag">Qualtrics</span>
+          <span class="tag">Amazon MTurk</span>
+        </div>
+      </div>
+
+      <!-- Step 04 -->
+      <div class="cw-step reveal">
+        <div class="cw-step__meta">
+          <div class="cw-step__num">04</div>
+          <span class="cw-step__label">Analysis</span>
+        </div>
+        <h2 class="cw-step__title">Checking whether the rubric moved anything at all</h2>
+        <p class="cw-step__body">I combined each candidate's ratings into a single score and compared the rubric and no-rubric groups statistically, then did the same for their hiring recommendations and how confident they felt in their decisions. Across every candidate and every measure, the two groups landed in the same place. The rubric wasn't quietly nudging people, it simply wasn't showing up in the data.</p>
+        <div class="cw-note">
+          <p>29 participants took part. Nothing, not ratings, recommendations, or confidence, differed meaningfully between the rubric and no-rubric groups for any of the three candidates.</p>
+        </div>
+        <div class="cw-step__tags">
+          <span class="tag">Independent t-Tests</span>
+          <span class="tag">Composite Scoring</span>
+        </div>
+      </div>
+
+      <!-- Step 05 -->
+      <div class="cw-step reveal">
+        <div class="cw-step__meta">
+          <div class="cw-step__num">05</div>
+          <span class="cw-step__label">Discussion</span>
+        </div>
+        <h2 class="cw-step__title">A null result isn't a dead end, it's a different question</h2>
+        <p class="cw-step__body">A flat result doesn't mean rubrics can't reduce bias, it means this rubric, in this task, didn't. My best guess is that people without a rubric were already leaning on criteria that looked a lot like it, so there was never much room for a gap to open up. It's also possible the rubric needed to push harder against people's default instincts to actually register, and a sample of 29 wasn't going to catch anything subtle. What stuck with me most from this project wasn't the bias question, it was realizing how easy it is for an intervention to look reasonable on paper and still be too weak to do anything in practice, which is something I now check for in every study I design.</p>
+        <div class="cw-step__tags">
+          <span class="tag">Null Results</span>
+          <span class="tag">Research Design</span>
+        </div>
+      </div>
+
+    </main>
+
+  </div><!-- /.cw-body -->
+  </div><!-- /.cw-body-wrap -->
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="footer" aria-label="Site footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div>
+          <p class="footer__brand">Grace Huang.</p>
+          <p class="footer__desc">UX researcher and psychology student, curious about the gap between what people say and what they mean.</p>
+        </div>
+        <div>
+          <p class="footer__col-label">Navigation</p>
+          <ul class="footer__nav-links" role="list">
+            <li><a href="index.html" class="footer__nav-link">Home</a></li>
+            <li><a href="projects.html" class="footer__nav-link">Projects</a></li>
+            <li><a href="index.html#contact" class="footer__nav-link">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__col-label">Case Studies</p>
+          <ul class="footer__nav-links" role="list">
+            <li><a href="workplace-control.html" class="footer__nav-link">Employee Compliance</a></li>
+            <li><a href="ai-tool-adoption.html" class="footer__nav-link">Professional Identity</a></li>
+            <li><a href="ann-arbor-city-engagement.html" class="footer__nav-link">Civic Engagement</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p class="footer__copy">© 2026 Grace Huang. All rights reserved.</p>
+        <p class="footer__copy">Built with HTML, CSS &amp; JavaScript.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
