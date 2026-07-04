@@ -203,7 +203,7 @@
 /* ---- Coursework ---- */
 .coursework {
   background: var(--bg);
-  padding-bottom: var(--space-24);
+  /* padding-bottom: var(--space-24); */
 }
 
 .course-grid {
