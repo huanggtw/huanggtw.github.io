@@ -602,6 +602,20 @@
   line-height: 1.7;
 }
 
+.rec-item__outcome {
+  font-size: var(--text-sm);
+  color: var(--ink-3);
+  line-height: 1.65;
+  margin-top: var(--space-3);
+  padding-top: var(--space-3);
+  border-top: 0.5px solid var(--rule);
+}
+
+.rec-item__outcome strong {
+  color: var(--ink-2);
+  font-weight: 600;
+}
+
 .rec-item__body strong {
   color: var(--ink);
   font-weight: 700;
