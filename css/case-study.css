@@ -602,6 +602,11 @@
   line-height: 1.7;
 }
 
+.rec-item__body,
+.rec-item__outcome {
+  grid-column: 2;
+}
+
 .rec-item__outcome {
   font-size: var(--text-sm);
   color: var(--ink-3);
