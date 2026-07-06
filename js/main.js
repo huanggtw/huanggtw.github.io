@@ -51,6 +51,7 @@ document.body.classList.add('js-ready');
 })();
 
 /* ---- Case study: sticky side nav highlighting ---- */
+/* ---- Case study: sticky side nav highlighting ---- */
 (function initSideNav() {
   const sideLinks = document.querySelectorAll('.side-nav__link');
   if (!sideLinks.length) return;
@@ -60,18 +61,21 @@ document.body.classList.add('js-ready');
     return { link, el: document.getElementById(id) };
   }).filter((s) => s.el);
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          sideLinks.forEach((l) => l.classList.remove('is-active'));
-          const active = sections.find((s) => s.el === entry.target);
-          if (active) active.link.classList.add('is-active');
-        }
-      });
-    },
-    { threshold: 0.3, rootMargin: '-80px 0px -60% 0px' }
-  );
+  if (!sections.length) return;
 
-  sections.forEach(({ el }) => observer.observe(el));
+  function updateActive() {
+    const scrollPos = window.scrollY + 160; // offset for sticky header
+    let current = sections[0];
+    for (const s of sections) {
+      if (s.el.offsetTop <= scrollPos) {
+        current = s;
+      }
+    }
+    sideLinks.forEach((l) => l.classList.remove('is-active'));
+    current.link.classList.add('is-active');
+  }
+
+  window.addEventListener('scroll', updateActive, { passive: true });
+  window.addEventListener('resize', updateActive);
+  updateActive();
 })();
