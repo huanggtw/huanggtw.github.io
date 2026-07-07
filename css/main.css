@@ -389,6 +389,12 @@ hr {
   margin-bottom: var(--space-4);
 }
 
+.footer__nav-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-6);
+}
+
 .footer__nav-links {
   display: flex;
   flex-direction: column;
