@@ -2,19 +2,39 @@
    about.css — about.html styles
    ============================================================ */
 
+/* ---- HERO ---- */
 .about-hero {
   padding-top: calc(var(--nav-h) + var(--space-16));
   padding-bottom: var(--space-20);
 }
 
-.about-hero__grid {
+.about-hero__top {
   display: grid;
-  grid-template-columns: 0.85fr 1.15fr;
+  grid-template-columns: 0.7fr 1.3fr;
   gap: var(--space-16);
-  align-items: start;
+  align-items: center;
+  margin-bottom: var(--space-16);
+}
+
+.about-vitals {
+  padding-top: var(--space-4);
 }
 
 .about-photo {
+  position: relative;
+  max-width: 280px;
+}
+
+.about-photo::before {
+  content: "";
+  position: absolute;
+  inset: 14px -14px -14px 14px;
+  border: 1px solid var(--rule);
+  border-radius: 16px;
+  z-index: -1;
+}
+
+.about-photo__inner {
   width: 100%;
   aspect-ratio: 4 / 5;
   border-radius: 16px;
@@ -31,11 +51,11 @@
 }
 
 .about-hero__eyebrow {
-  font-size: var(--text-xs);
+  font-family: 'Cormorant Garamond';
+  font-style: italic;
   font-weight: 500;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--ink-3);
+  font-size: 1.4rem;
+  color: #8b6f5e;
   margin-bottom: var(--space-4);
 }
 
@@ -48,12 +68,40 @@
   letter-spacing: -0.01em;
 }
 
+.about-bio {
+  max-width: 68ch;
+  border-top: 1px solid var(--rule);
+  padding-top: var(--space-10);
+}
+
 .about-bio p {
   font-size: var(--text-base);
   color: var(--ink-2);
   line-height: 1.75;
-  max-width: 56ch;
   margin-bottom: var(--space-4);
+}
+
+.coded-phrase {
+  position: relative;
+  background: rgba(139, 111, 94, 0.1);
+  border-bottom: 1px solid rgba(139, 111, 94, 0.35);
+  padding: 0.05em 0;
+}
+
+.coded-tag {
+  display: inline-block;
+  font-family: 'Cabinet Grotesk';
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #8b6f5e;
+  background: rgba(139, 111, 94, 0.14);
+  border-radius: 3px;
+  padding: 0.1em 0.45em;
+  margin-left: 0.5em;
+  vertical-align: 2px;
+  white-space: nowrap;
 }
 
 .about-hero__actions {
@@ -92,10 +140,20 @@
   color: var(--green);
 }
 
+/* ---- HOW I WORK ---- */
 .about-principles {
   background: #fff;
   padding: var(--space-20) 0;
   border-top: 1px solid var(--rule);
+}
+
+.about-principles__eyebrow {
+  font-family: 'Cormorant Garamond';
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1.25rem;
+  color: #8b6f5e;
+  margin-bottom: var(--space-2);
 }
 
 .about-principles__heading {
@@ -103,46 +161,57 @@
   font-weight: 800;
   color: var(--ink);
   margin-bottom: var(--space-12);
-  max-width: 30ch;
+  max-width: 34ch;
 }
 
-.about-principles__grid {
+.codebook {
+  max-width: 760px;
+}
+
+.codebook__row {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-8);
+  grid-template-columns: 0.8fr 1.6fr;
+  gap: var(--space-6);
+  padding: var(--space-6) 0;
+  border-top: 1px solid var(--rule);
 }
 
-.about-principle__num {
-  font-size: var(--text-xs);
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  color: var(--ink-4);
-  margin-bottom: var(--space-3);
+.codebook__row:last-child {
+  border-bottom: 1px solid var(--rule);
 }
 
-.about-principle__title {
-  font-size: var(--text-lg, 1.3rem);
+.codebook__theme {
+  font-size: var(--text-base);
   font-weight: 700;
   color: var(--ink);
-  margin-bottom: var(--space-2);
+  line-height: 1.4;
 }
 
-.about-principle__desc {
+.codebook__def {
   font-size: var(--text-sm);
   color: var(--ink-2);
   line-height: 1.65;
 }
 
+/* ---- Responsive ---- */
 @media (max-width: 860px) {
-  .about-hero__grid {
+  .about-hero__top {
     grid-template-columns: 1fr;
-    gap: var(--space-10);
+    gap: var(--space-8);
   }
   .about-photo {
-    max-width: 340px;
+    max-width: 220px;
   }
-  .about-principles__grid {
+  .about-photo::before {
+    inset: 10px -10px -10px 10px;
+  }
+  .codebook__row {
     grid-template-columns: 1fr;
-    gap: var(--space-10);
+    gap: var(--space-2);
+  }
+  .coded-tag {
+    display: block;
+    margin: 0.35em 0 0;
+    width: fit-content;
   }
 }

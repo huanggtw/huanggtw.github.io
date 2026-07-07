@@ -11,7 +11,7 @@
   <meta name="description" content="UX researcher and psychology graduate from the University of Michigan. About Grace Huang's background, research approach, and how to get in touch." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@200;300;400;500;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@200;300;400;500;700;800&family=Cormorant+Garamond:ital,wght@0,500;1,500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/main.css" />
   <link rel="stylesheet" href="css/about.css" />
 </head>
@@ -33,28 +33,24 @@
 
   <section class="about-hero">
     <div class="container">
-      <div class="about-hero__grid">
+
+      <div class="about-hero__top">
 
         <div class="about-photo reveal">
-          <!-- Photo file: images/headshot.JPG -->
-          <img src="images/headshot.JPG" alt="Grace Huang" onerror="this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:100%;color:var(--ink-4);font-size:0.85rem;text-align:center;padding:1rem;\'>Add your photo at<br>images/headshot.JPG</div>'" />
+          <div class="about-photo__inner">
+            <!-- Photo file: images/headshot.JPG -->
+            <img src="images/headshot.JPG" alt="Grace Huang" onerror="this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:100%;color:var(--ink-4);font-size:0.85rem;text-align:center;padding:1rem;\'>Add your photo at<br>images/headshot.JPG</div>'" />
+          </div>
         </div>
 
-        <div>
-          <p class="about-hero__eyebrow reveal">About</p>
+        <div class="about-vitals">
+          <p class="about-hero__eyebrow reveal">Field notes</p>
           <h1 class="about-hero__name reveal">Grace Huang</h1>
-
-          <div class="about-bio reveal-group">
-            <p>I'm a psychology graduate from the University of Michigan with a minor in UX Design, originally from Hong Kong and now based in the U.S. My work sits at the intersection of behavioral psychology and human-centered design, using both to understand not just what people do, but why.</p>
-            <p>Research wasn't always the plan. I never imagined myself as someone who'd end up doing it, it felt procedural and out of reach, not something I saw myself being good at. That changed when my advisor, Dr. Mari Kira, handed me a project that had been sitting idle, one nobody else on the team had picked up. I noticed at some point I wasn't just tolerating the work anymore. I was choosing it.</p>
-            <p>What pulled me in was something I hadn't expected: every study follows the same fixed procedure no matter what method you use, interviews, surveys, coding schemes, all of it structured and repeatable on paper. But what you actually find never is. The uncertainty doesn't go away once you're rigorous, it just becomes the interesting part.</p>
-            <p>I've always been a fairly perceptive person, more interested in noticing what's actually going on than in taking things at face value. UX research fits that instinct almost exactly: it's less about solving the problem someone already named, and more about finding the one nobody's named yet. That's the thread running through everything on this site, and probably the honest answer to why the header up top says unapologetically people-centered.</p>
-          </div>
 
           <div class="about-hero__actions reveal-group">
             <a href="resume.pdf" class="btn btn--primary" download>Download Resume ↓</a>
             <a href="https://linkedin.com/in/gracehtw" target="_blank" rel="noopener" class="btn btn--ghost">LinkedIn ↗</a>
-            <a href="https://vsco.co/gracehtw/" target="_blank" rel="noopener" class="btn btn--ghost">Photography ↗</a>
+            <a href="https://huanggtw.github.io/photography/" target="_blank" rel="noopener" class="btn btn--ghost">Photography ↗</a>
           </div>
 
           <dl class="about-stats reveal-group">
@@ -78,27 +74,34 @@
         </div>
 
       </div>
+
+      <div class="about-bio reveal-group">
+        <p>I'm a psychology graduate from the University of Michigan with a minor in UX Design, originally from Hong Kong and now based in the U.S. My work sits at the intersection of behavioral psychology and human-centered design, using both to understand not just what people do, but why.</p>
+        <p>Research wasn't always the plan. I never imagined myself as someone who'd end up doing it, it felt procedural and out of reach, not something I saw myself being good at. <span class="coded-phrase">That changed when my advisor, Dr. Mari Kira, handed me a project that had been sitting idle, one nobody else on the team had picked up.<span class="coded-tag">Turning point</span></span> <span class="coded-phrase">I noticed at some point I wasn't just tolerating the work anymore. I was choosing it.<span class="coded-tag">The realization</span></span></p>
+        <p><span class="coded-phrase">What pulled me in was something I hadn't expected: every study follows the same fixed procedure no matter what method you use, interviews, surveys, coding schemes, all of it structured and repeatable on paper. But what you actually find never is.<span class="coded-tag">Core tension</span></span> The uncertainty doesn't go away once you're rigorous, it just becomes the interesting part.</p>
+        <p>I've always been a fairly perceptive person, more interested in noticing what's actually going on than in taking things at face value. <span class="coded-phrase">UX research fits that instinct almost exactly: it's less about solving the problem someone already named, and more about finding the one nobody's named yet.<span class="coded-tag">What drives me</span></span> That's the thread running through everything on this site, and probably the honest answer to why the header up top says unapologetically people-centered.</p>
+      </div>
+
     </div>
   </section>
 
   <section class="about-principles">
     <div class="container">
-      <h2 class="about-principles__heading reveal">How I approach research</h2>
-      <div class="about-principles__grid">
-        <div class="reveal">
-          <p class="about-principle__num">01</p>
-          <p class="about-principle__title">Start with the discomfort</p>
-          <p class="about-principle__desc">The most useful findings usually live in the moment someone hesitates, contradicts themselves, or explains away something that doesn't quite add up. I try not to smooth that over too early.</p>
+      <p class="about-principles__eyebrow reveal">A short codebook</p>
+      <h2 class="about-principles__heading reveal">How I read my own research instincts</h2>
+
+      <div class="codebook reveal-group">
+        <div class="codebook__row">
+          <p class="codebook__theme">Start with the discomfort</p>
+          <p class="codebook__def">The most useful findings usually live in the moment someone hesitates, contradicts themselves, or explains away something that doesn't quite add up. I try not to smooth that over too early.</p>
         </div>
-        <div class="reveal">
-          <p class="about-principle__num">02</p>
-          <p class="about-principle__title">Numbers and stories, together</p>
-          <p class="about-principle__desc">Quantitative data tells you where to look. Qualitative data tells you why it matters. I default to using both rather than treating them as separate tracks.</p>
+        <div class="codebook__row">
+          <p class="codebook__theme">Numbers and stories, together</p>
+          <p class="codebook__def">Quantitative data tells you where to look. Qualitative data tells you why it matters. I default to using both rather than treating them as separate tracks.</p>
         </div>
-        <div class="reveal">
-          <p class="about-principle__num">03</p>
-          <p class="about-principle__title">Recommendations, not just findings</p>
-          <p class="about-principle__desc">A finding that doesn't point toward a decision isn't finished yet. I try to end every project at "here's what to do about it," not just "here's what we learned."</p>
+        <div class="codebook__row">
+          <p class="codebook__theme">Recommendations, not just findings</p>
+          <p class="codebook__def">A finding that doesn't point toward a decision isn't finished yet. I try to end every project at "here's what to do about it," not just "here's what we learned."</p>
         </div>
       </div>
     </div>
