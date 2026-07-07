@@ -203,7 +203,7 @@
 /* ---- Coursework ---- */
 .coursework {
   background: var(--bg);
-  /* padding-bottom: var(--space-24); */
+  padding-bottom: var(--space-24);
 }
 
 .course-grid {
@@ -372,8 +372,5 @@
 .side-project-link:hover { background: var(--ink); color: var(--bg); }
 
 .side-project-soon {
-  font-size: var(--text-sm);
-  color: var(--ink-4);
-  font-style: italic;
-  white-space: nowrap;
+  padding-right: 5rem;
 }
