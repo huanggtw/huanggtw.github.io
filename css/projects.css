@@ -312,7 +312,7 @@
 
 /* ---- Also Built section ---- */
 .also-built {
-  padding: var(--space-16) 0 var(--space-20);
+  padding: var(--space-1) 0 var(--space-20);
 }
 
 .side-projects-list { display: flex; flex-direction: column; }
